@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{BDE94DF5-88E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{80F844B9-2A93-4763-BA1C-96AF43855C59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefactorChallenge.Domain", "RefactorChallenge.Domain\RefactorChallenge.Domain.csproj", "{040BE7EC-833B-4FB2-9ED4-91FE36CBC560}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefactorChallenge.Domain", "RefactorChallenge.Domain\RefactorChallenge.Domain.csproj", "{040BE7EC-833B-4FB2-9ED4-91FE36CBC560}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{CAD0E23F-F97F-46EC-B56A-6429E7441881}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefactorChallenge.Persistence", "RefactorChallenge.Persistence\RefactorChallenge.Persistence.csproj", "{43855D62-14F6-4D0A-A26C-325A7F87C8B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefactorChallenge.Persistence", "RefactorChallenge.Persistence\RefactorChallenge.Persistence.csproj", "{43855D62-14F6-4D0A-A26C-325A7F87C8B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefactorChallenge.Application", "RefactorChallenge.Application\RefactorChallenge.Application.csproj", "{DF1AC1C1-FDC9-4CA7-94F0-598ACBC8B53B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefactorChallenge.Application", "RefactorChallenge.Application\RefactorChallenge.Application.csproj", "{DF1AC1C1-FDC9-4CA7-94F0-598ACBC8B53B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

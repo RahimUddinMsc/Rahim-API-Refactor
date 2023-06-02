@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RefactorChallenge.Application;
+using RefactorChallenge.Persistence;
 using RefactoringChallenge.Entities;
 
 namespace RefactoringChallenge
@@ -22,9 +24,11 @@ namespace RefactoringChallenge
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<NorthwindDbContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
+            services.AddApplicationServices();
+            services.AddPersistenceServices(Configuration);
+            //services.AddDbContext<NorthwindDbContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 
-            services.AddSingleton(TypeAdapterConfig.GlobalSettings);
+            services.AddSingleton(TypeAdapterConfig.GlobalSettings);            
             services.AddScoped<IMapper, ServiceMapper>();
 
             services.AddControllers();
