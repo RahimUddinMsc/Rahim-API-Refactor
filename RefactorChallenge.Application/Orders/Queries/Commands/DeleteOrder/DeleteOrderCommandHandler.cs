@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using RefactorChallenge.Application.Contracts;
+using RefactorChallenge.Application.Exceptions;
 using RefactoringChallenge.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -21,13 +22,12 @@ namespace RefactorChallenge.Application.Orders.Queries.Commands.DeleteOrder
         }
 
         public async Task Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
-        {
-            //Todo
-            //1. check if order exists if not throw not found exception
-
+        {            
             var order = await _orders.GetByIdAsync(request.OrderId);
-            var orderDetails = await _orderDetails.Find(o => o.OrderId == request.OrderId);
+            if(order == null)
+                throw new NotFoundException(nameof(Order), request.OrderId);
 
+            var orderDetails = await _orderDetails.Find(o => o.OrderId == request.OrderId);
             if (orderDetails.Count > 0)
                 await _orderDetails.DeleteAllAsync(orderDetails);
 

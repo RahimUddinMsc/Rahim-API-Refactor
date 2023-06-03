@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using RefactorChallenge.Application.Exceptions;
 
 namespace RefactorChallenge.Application.Orders.Queries.Queries.GetOrder
 {
@@ -28,8 +29,10 @@ namespace RefactorChallenge.Application.Orders.Queries.Queries.GetOrder
         public async Task<OrderResponse> Handle(GetOrderQuery request, CancellationToken cancellationToken)
         {
             var order = await _orders.GetByIdAsync(request.OrderId);
-            var orderDetails = await _orderDetails.Find(o => o.OrderId == order.OrderId);
-            
+            if (order == null)
+                throw new NotFoundException(nameof(Order),request.OrderId);
+
+            var orderDetails = await _orderDetails.Find(o => o.OrderId == order.OrderId);            
             order.OrderDetails = orderDetails;
             
             return _mapper.Map<OrderResponse>(order);            

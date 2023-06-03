@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using RefactorChallenge.Application;
 using RefactorChallenge.Persistence;
 using RefactoringChallenge.Entities;
+using RefactoringChallenge.Middleware;
 
 namespace RefactoringChallenge
 {
@@ -49,6 +50,8 @@ namespace RefactoringChallenge
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCustomExceptionHandler();
 
             app.UseAuthorization();
 
