@@ -31,7 +31,9 @@ namespace RefactoringChallenge
             services.AddSingleton(TypeAdapterConfig.GlobalSettings);            
             services.AddScoped<IMapper, ServiceMapper>();
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            ); 
 
             services.AddSwaggerGen();
         }

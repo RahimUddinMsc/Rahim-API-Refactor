@@ -8,5 +8,8 @@ namespace RefactorChallenge.Application.Orders.Queries.Queries.GetOrderList
 {
     public class GetOrderListQuery : IRequest<List<OrderResponse>>
     {
-    }
+        public int? Skip { get; set; }
+        public int? Take { get; set; }
+        public bool? IncludeOrderDetails { get; set; } 
+    }    
 }

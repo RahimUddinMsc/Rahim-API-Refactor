@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 using Mapster;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RefactorChallenge.Application.Orders.Queries.Commands;
+using RefactorChallenge.Application.Orders.Queries.Commands.AddProductToOrder;
+using RefactorChallenge.Application.Orders.Queries.Commands.DeleteOrder;
+using RefactorChallenge.Application.Orders.Queries.Queries.GetOrder;
 using RefactorChallenge.Application.Orders.Queries.Queries.GetOrderList;
+using RefactorChallenge.Application.ViewModels;
 using RefactoringChallenge.Application.ViewModels;
 using RefactoringChallenge.Entities;
 
@@ -33,14 +39,14 @@ namespace RefactoringChallenge.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<OrderResponse>>> Get(int? skip = null, int? take = null)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<OrderResponse>>> Get(bool? includeOrderDetails, int? skip = null, int? take = null)
         {
-            var data = await _mediator.Send(new GetOrderListQuery());
-            return Json(data);
+            var getOrderListQuery = new GetOrderListQuery() { IncludeOrderDetails = includeOrderDetails, Skip = skip, Take = take};
+            var data = await _mediator.Send(getOrderListQuery);
+
+            return Ok(data);
         }
-
-
-
 
         //[HttpGet]
         //public IActionResult Get(int? skip = null, int? take = null)
@@ -59,6 +65,20 @@ namespace RefactoringChallenge.Controllers
         //}
 
 
+        [HttpGet("{orderId}", Name = "GetOrder")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<OrderResponse>> GetById([FromRoute] int orderId)
+        {            
+            var data = await _mediator.Send(new GetOrderQuery() { OrderId = orderId });
+
+            //Use middleware
+            //if (result == null)
+            //    return NotFound();
+
+            return Ok(data);
+        }
+
+
         //[HttpGet("{orderId}")]
         //public IActionResult GetById([FromRoute] int orderId)
         //{
@@ -69,6 +89,16 @@ namespace RefactoringChallenge.Controllers
 
         //    return Json(result);
         //}
+
+
+        [HttpPost("[action]")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<OrderResponse>> Create([FromBody] CreateOrderCommand order)
+        {
+            var response = await _mediator.Send(order);
+            return CreatedAtRoute("GetOrder", new { orderId = response.OrderId }, response);                                
+        }
+
 
         //[HttpPost("[action]")]
         //public IActionResult Create(
@@ -120,6 +150,16 @@ namespace RefactoringChallenge.Controllers
         //    return Json(newOrder.Adapt<OrderResponse>());
         //}
 
+        //Order route attribute no longer needed kept to maintain original api call
+        [HttpPost("{orderId}/[action]")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<OrderResponse>> AddProductsToOrder([FromBody] AddProductToOrderCommand orderDetails)
+        {
+            var response = await _mediator.Send(orderDetails);
+            return CreatedAtRoute("GetOrder", new { orderId = orderDetails.OrderId }, response);            
+        }
+
+
         //[HttpPost("{orderId}/[action]")]
         //public IActionResult AddProductsToOrder([FromRoute] int orderId, IEnumerable<OrderDetailRequest> orderDetails)
         //{
@@ -145,6 +185,17 @@ namespace RefactoringChallenge.Controllers
 
         //    return Json(newOrderDetails.Select(od => od.Adapt<OrderDetailResponse>()));
         //}
+
+
+        [HttpPost("{orderId}/[action]")]
+        public async Task<ActionResult> Delete([FromRoute] int orderId)
+        {
+            var deleletOrderCommand = new DeleteOrderCommand() { OrderId = orderId };
+            await _mediator.Send(deleletOrderCommand);   
+
+            return NoContent();
+        }
+
 
         //[HttpPost("{orderId}/[action]")]
         //public IActionResult Delete([FromRoute] int orderId)

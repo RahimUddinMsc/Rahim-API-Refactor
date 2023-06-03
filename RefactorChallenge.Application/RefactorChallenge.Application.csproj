@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Orders\Queries\Commands\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\RefactorChallenge.Domain\RefactorChallenge.Domain.csproj" />
   </ItemGroup>
 
