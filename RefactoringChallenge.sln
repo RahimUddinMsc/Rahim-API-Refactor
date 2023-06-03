@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefactorChallenge.Persisten
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefactorChallenge.Application", "RefactorChallenge.Application\RefactorChallenge.Application.csproj", "{DF1AC1C1-FDC9-4CA7-94F0-598ACBC8B53B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4E4B746F-5656-4757-A714-4A4BB4A75DF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefactorChallenge.Application.UnitTests", "RefactorChallenge.Application.UnitTests\RefactorChallenge.Application.UnitTests.csproj", "{6D85BB3F-4A92-4736-A43D-6396AFA73DED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,10 @@ Global
 		{DF1AC1C1-FDC9-4CA7-94F0-598ACBC8B53B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF1AC1C1-FDC9-4CA7-94F0-598ACBC8B53B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF1AC1C1-FDC9-4CA7-94F0-598ACBC8B53B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D85BB3F-4A92-4736-A43D-6396AFA73DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D85BB3F-4A92-4736-A43D-6396AFA73DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D85BB3F-4A92-4736-A43D-6396AFA73DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D85BB3F-4A92-4736-A43D-6396AFA73DED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +61,7 @@ Global
 		{CAD0E23F-F97F-46EC-B56A-6429E7441881} = {8B01D5A3-C5F9-442F-8DDD-D95DBAE5F651}
 		{43855D62-14F6-4D0A-A26C-325A7F87C8B3} = {CAD0E23F-F97F-46EC-B56A-6429E7441881}
 		{DF1AC1C1-FDC9-4CA7-94F0-598ACBC8B53B} = {80F844B9-2A93-4763-BA1C-96AF43855C59}
+		{6D85BB3F-4A92-4736-A43D-6396AFA73DED} = {4E4B746F-5656-4757-A714-4A4BB4A75DF4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FDE0621-BB53-4544-B5C2-22AC3365AAD5}

@@ -14,15 +14,13 @@ namespace RefactorChallenge.Application.Orders.Queries.Commands
 {
     public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, OrderResponse>
     {
-        private readonly IAsyncRepository<Order> _orders;
-        private readonly IAsyncRepository<Customer> _customers;
+        private readonly IAsyncRepository<Order> _orders;        
         private readonly IMapper _mapper;
 
-        public CreateOrderCommandHandler(IMapper mapper, IAsyncRepository<Order> orders, IAsyncRepository<Customer> customers)
+        public CreateOrderCommandHandler(IMapper mapper, IAsyncRepository<Order> orders)
         {
             _mapper = mapper;
-            _orders = orders;            
-            _customers = customers;
+            _orders = orders;                        
         }
 
         public async Task<OrderResponse> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
